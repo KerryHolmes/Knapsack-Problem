@@ -9,6 +9,7 @@ vector
 knapsack(vector values, vector weights, int weight_lim)
 {
     table subproblems = vector(values.size() + 1, vector(weight_lim + 1 , 0));
+    vector solution = vector(values.size(), 0);
 
     for(int i = 1; i < values.size(); ++i)
     {
@@ -22,6 +23,7 @@ knapsack(vector values, vector weights, int weight_lim)
             {
                 subproblems[i][j] = std::max(subproblems[i-1][j], 
                                     subproblems[i-1][j-w[i]] + values[i]);
+                solution[i] = 1;
             }
         }
     }
