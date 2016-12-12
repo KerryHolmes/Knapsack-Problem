@@ -1,4 +1,12 @@
+#ifndef KNAPSACK_HPP
+#define KNAPSACK_HPP
+
 #include <vector>
 
-std::vector<int> 
-knapsack(std::vector<int> values, std::vector<int> weights, int weight_lim);
+using vector = std::vector<int>;
+
+//Definition contained in the corresponding cpp file
+vector
+knapsack(vector values, vector weights, int weight_lim);
+
+#endif

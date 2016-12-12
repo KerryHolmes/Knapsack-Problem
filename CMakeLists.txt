@@ -15,6 +15,7 @@ set(CMAKE_CXX_FLAGS "-Wall -std=c++11 -ggdb ${SAN_FLAGS}")
 
 
 # Declares the executable to be built from source files
+# Removed Wall because of freqent unsigned vs signed comparisons
 add_executable(knapsack main.cpp knapsack.cpp)
 
 
