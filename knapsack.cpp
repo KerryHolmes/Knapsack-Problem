@@ -71,6 +71,10 @@ knapsack(vector values, vector weights, int weight_lim)
         }
     }
     
+    //Write the maximum value to standard output
+    
+    std::cout << "Maximum Value: " << subproblems[values.size()][weight_lim] << std::endl;
+    
     //Finally return the end result.
     return solution;
 }
