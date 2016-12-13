@@ -17,8 +17,9 @@ knapsack(vector values, vector weights, int weight_lim)
 {
     //The two matricies store the previously computed best value combinations,
     //and when each element is excluded of included noted by a 0 or 1 
-    //respectively. The vector will be used at the end to store the 
-    //calculated answer.
+    //respectively. They are padded with an extra row an column, so accessing
+    //the weights requires an offset of negative one. The vector will be used 
+    //at the end to store the calculated answer. 
 
     table subproblems(values.size() + 1, vector(weight_lim + 1 , 0));
     table inclusion(values.size() + 1, vector(weight_lim + 1 , 0));
@@ -31,7 +32,7 @@ knapsack(vector values, vector weights, int weight_lim)
     {
         for(int j = 0; j <= weight_lim; ++j)
         {
-            if(weights[i] > j) //The item is thrown out if its weight alone is 
+            if(weights[i-1] > j) //The item is thrown out if its weight alone is 
             {                   //more than the maximum.
 
                 subproblems[i][j] = subproblems[i-1][j];
@@ -39,10 +40,10 @@ knapsack(vector values, vector weights, int weight_lim)
             //Determine if it is better to take the item and then mark it
             //as included if so.
 
-            else if((subproblems[i-1][j-weights[i]] + values[i]) 
+            else if((subproblems[i-1][j-weights[i-1]] + values[i-1]) 
                                          > subproblems[i-1][j] )
             {
-                subproblems[i][j] = subproblems[i-1][j-weights[i]] + values[i];
+                subproblems[i][j] = subproblems[i-1][j-weights[i-1]] + values[i-1];
                 inclusion[i][j] = 1; 
             }
 
@@ -66,8 +67,8 @@ knapsack(vector values, vector weights, int weight_lim)
         //If the item here is taken, add it to the solution and remove its 
         //weight from the available pool.
 
-            solution.push_back(i);
-            W -= weights[i];
+            solution.push_back(i-1);
+            W -= weights[i-1];
         }
     }
     
