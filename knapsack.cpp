@@ -30,7 +30,7 @@ knapsack(vector values, vector weights, int weight_lim)
 
     for(int i = 1; i <= values.size(); ++i)
     {
-        for(int j = 0; j <= weight_lim; ++j)
+        for(int j = 1; j <= weight_lim; ++j)
         {
             if(weights[i-1] > j) //The item is thrown out if its weight alone is 
             {                   //more than the maximum.
